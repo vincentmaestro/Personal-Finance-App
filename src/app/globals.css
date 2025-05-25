@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --dark: #201f24;
+  --light: #ffffff;
+  --light-2: #f2f2f2;
+  --cyan: #33a49f;
+  --light-cyan: #82C9D7;
+  --green: #277C78;
+  --ash-like: #626070;
+  --margenta: #F2CDAC;
+  --light-text: #696868;
+  --lighter-text: #d1d1d1;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+  --color-light-2: var(--light-2);
+  --color-cyan: var(--cyan);
+  --color-light-cyan: var(--light-cyan);
+  --color-green: var(--green);
+  --color-ash-like: var(--ash-like);
+  --color-margenta: var(--margenta);
+  --color-light-text: var(--light-text);
+  --color-lighter-text: var(--lighter-text);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--light);
+  color: var(--dark);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 10em;
+  background: lightgray;
+  overflow: hidden;
+}
+
+progress[data-color="#277C78"]::-webkit-progress-value {
+  border-radius: 3rem;
+  background: var(--green);
+  /* background: linear-gradient(#fff8,#fff0),
+  repeating-linear-gradient(135deg,#0003 0 10px,#0000 0 20px),
+  #31c6f7; */
+}
+progress[data-color="#626070"]::-webkit-progress-value {
+  border-radius: 3rem;
+  background: var(--ash-like);
+}
+progress[data-color="#F2CDAC"]::-webkit-progress-value {
+  border-radius: 3rem;
+  background: var(--margenta);
+}
+progress[data-color="#82C9D7"]::-webkit-progress-value {
+  border-radius: 3rem;
+  background: var(--light-cyan);
+}
+
+.transactions-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.transactions-table th {
+  padding: .8rem 0;
+}
+
+.transactions-table td {
+  text-align: center;
+  padding: 0.8rem 0 0.8rem 1rem;
 }
