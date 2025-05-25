@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from 'react';
 import jsonData from '../data.json';
-import BudgetCard from './budgetcard';
+import BudgetCard from './budget-card';
 import BudgetSummary from './budgetsummary';
 
 export default function Budgets() {

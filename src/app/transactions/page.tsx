@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useReducer, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { sortBy, categories, paginationReducer, pageReducer } from './pageLogic';
+import { sortBy, categories, paginationReducer, pageReducer } from './page-logic';
 import Image from 'next/image';
 import LeftCaret from '../../assets/icons/icon-caret-left.svg';
 import RightCaret from '../../assets/icons/icon-caret-right.svg';
