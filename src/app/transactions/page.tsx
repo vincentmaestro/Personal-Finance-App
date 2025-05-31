@@ -1,7 +1,8 @@
 "use client";
 import { useMemo, useReducer, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { sortBy, categories, paginationReducer, pageReducer } from './page-logic';
+import { sortBy, paginationReducer, pageReducer } from './page-logic';
+import { categories } from '@/utils/categories';
 import Image from 'next/image';
 import LeftCaret from '../../assets/icons/icon-caret-left.svg';
 import RightCaret from '../../assets/icons/icon-caret-right.svg';
@@ -56,7 +57,7 @@ export default function Transactions() {
         <div className="w-full bg-light-2 px-16 py-14">
             <h1 className="text-2xl font-semibold mb-5">Transactions</h1>
             <div className="flex items-center justify-between mb-8">
-                <input type="text" placeholder="Search Transaction" value={search} className='bg-light px-3 py-1 border border-transparent focus:border-ash-like rounded-lg outline-none w-[35%]' onChange={performSearch} />
+                <input type="text" placeholder="Search Transaction" value={search} className='bg-light px-3 py-1 border border-lighter-text focus:border-ash-like rounded-lg outline-none w-[35%]' onChange={performSearch} />
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2">
                         <span>Sort by</span>
