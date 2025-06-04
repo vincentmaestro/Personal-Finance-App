@@ -1,17 +1,11 @@
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { budgets } from '@/utils/types';
 
 export default function BudgetSummary({ budgets }: {
-    budgets: {
-        name: string,
-        value: number,
-        used: number,
-        theme: string,
-        data: any[],
-        date: string[]
-    }[]
+    budgets: budgets
 }) {
     return(
-        <div className="bg-light col-start-1 col-span-1 self-start flex flex-col items-center pb-4 rounded-2xl">
+        <div className="bg-light sticky top-0 col-start-1 col-span-1 self-start flex flex-col items-center pb-4 rounded-2xl">
             <div className="relative">
                 <PieChart width={300} height={300}>
                     <Pie data={budgets} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={70} outerRadius={110}>
@@ -24,7 +18,7 @@ export default function BudgetSummary({ budgets }: {
                 <div className="absolute left-1/2 top-1/2 -translate-1/2 flex flex-col items-center">
                     <p className='text-3xl font-semibold'>$
                         {budgets.reduce((accumulator, currentValue) => {
-                            const used = accumulator.used + currentValue.used;
+                            const used = accumulator.used + currentValue.spent;
                             const limit = accumulator.limit + currentValue.value;
                             return { used, limit };
                         }, { used: 0, limit: 0 }).used.toFixed(2)}
@@ -45,7 +39,7 @@ export default function BudgetSummary({ budgets }: {
                             <div className="w-2 h-8 rounded-2xl" style={{ backgroundColor: budget.theme }} />
                             <div className="w-full flex justify-between">
                                 <h1 className='text-light-text'>{budget.name}</h1>
-                                <p className='text-light-text'><span className='text-dark font-semibold'>${budget.used}</span>{` `}of ${budget.value}</p>
+                                <p className='text-light-text'><span className='text-dark font-semibold'>${budget.spent}</span>{` `}of ${budget.value}</p>
                             </div>
                         </div>
                     ))

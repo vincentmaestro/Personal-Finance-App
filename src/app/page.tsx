@@ -43,7 +43,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex gap-x-3">
-                  <div className="w-2 h-14 bg-ash-like rounded-2xl" />
+                  <div className="w-2 h-14 bg-navy rounded-2xl" />
                   <div className="flex flex-col justify-between">
                     <h1 className='text-light-text'>Concert Ticket</h1>
                     <span className='font-semibold'>$110</span>

@@ -6,13 +6,25 @@
   --dark: #201f24;
   --light: #ffffff;
   --light-2: #f2f2f2;
+  --light-text: #696868;
+  --lighter-text: #d1d1d1;
   --cyan: #33a49f;
   --light-cyan: #82C9D7;
   --green: #277C78;
-  --ash-like: #626070;
-  --margenta: #F2CDAC;
-  --light-text: #696868;
-  --lighter-text: #d1d1d1;
+  --wheat: #F2CDAC;
+  --navy: #626070;
+  --red: #C94736;
+  --grey: #B3B3B3;
+  --purple: #826CB0;
+  --lighter-purple: #AF81BA;
+  --turquoise: #597C7C;
+  --brown: #93674F;
+  --magenta: #934F6F;
+  --blue: #3F82B2;
+  --navy-grey: #97A0AC;
+  --army-grey: #7F9161;
+  --gold: #CAB361;
+  --orange: #BE6C49;
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -55,13 +67,25 @@
   --color-dark: var(--dark);
   --color-light: var(--light);
   --color-light-2: var(--light-2);
+  --color-light-text: var(--light-text);
+  --color-lighter-text: var(--lighter-text);
   --color-cyan: var(--cyan);
   --color-light-cyan: var(--light-cyan);
   --color-green: var(--green);
-  --color-ash-like: var(--ash-like);
-  --color-margenta: var(--margenta);
-  --color-light-text: var(--light-text);
-  --color-lighter-text: var(--lighter-text);
+  --color-wheat: var(--wheat);
+  --color-navy: var(--navy);
+  --color-red: var(--red);
+  --color-grey: var(--grey);
+  --color-purple: var(--purple);
+  --color-lighter-purple: var(--lighter-purple);
+  --color-turquoise: var(--turquoise);
+  --color-brown: var(--brown);
+  --color-magenta: var(--magenta);
+  --color-blue: var(--blue);
+  --color-navy-grey: var(--navy-grey);
+  --color-army-grey: var(--army-grey);
+  --color-gold: var(--gold);
+  --color-orange: var(--orange);
 }
 
 @theme inline {
@@ -150,32 +174,6 @@ body {
   color: var(--dark);
 }
 
-progress::-webkit-progress-bar {
-  border-radius: 10em;
-  background: lightgray;
-  overflow: hidden;
-}
-
-progress[data-color="#277C78"]::-webkit-progress-value {
-  border-radius: 3rem;
-  background: var(--green);
-  /* background: linear-gradient(#fff8,#fff0),
-  repeating-linear-gradient(135deg,#0003 0 10px,#0000 0 20px),
-  #31c6f7; */
-}
-progress[data-color="#626070"]::-webkit-progress-value {
-  border-radius: 3rem;
-  background: var(--ash-like);
-}
-progress[data-color="#F2CDAC"]::-webkit-progress-value {
-  border-radius: 3rem;
-  background: var(--margenta);
-}
-progress[data-color="#82C9D7"]::-webkit-progress-value {
-  border-radius: 3rem;
-  background: var(--light-cyan);
-}
-
 .transactions-table {
   border-collapse: collapse;
   table-layout: fixed;
@@ -188,4 +186,67 @@ progress[data-color="#82C9D7"]::-webkit-progress-value {
 .transactions-table td {
   text-align: center;
   padding: 0.8rem 0 0.8rem 1rem;
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 3rem;
+  background: lightgray;
+  overflow: hidden;
+}
+progress::-webkit-progress-value {
+  border-radius: 3rem;
+}
+progress[data-color="#277C78"]::-webkit-progress-value {
+  background: var(--green);
+  /* background: linear-gradient(#fff8,#fff0),
+  repeating-linear-gradient(135deg,#0003 0 10px,#0000 0 20px),
+  #31c6f7; */
+}
+progress[data-color="#626070"]::-webkit-progress-value {
+  background: var(--navy);
+}
+progress[data-color="#82C9D7"]::-webkit-progress-value {
+  background: var(--light-cyan);
+}
+progress[data-color="#F2CDAC"]::-webkit-progress-value {
+  background: var(--wheat);
+}
+progress[data-color="#626070"]::-webkit-progress-value {
+  background: var(--navy);
+}
+progress[data-color="#C94736"]::-webkit-progress-value {
+  background: var(--red);
+}
+progress[data-color="#B3B3B3"]::-webkit-progress-value {
+  background: var(--grey);
+}
+progress[data-color="#826CB0"]::-webkit-progress-value {
+  background: var(--purple);
+}
+progress[data-color="#AF81BA"]::-webkit-progress-value {
+  background: var(--lighter-purple);
+}
+progress[data-color="#597C7C"]::-webkit-progress-value {
+  background: var(--turquoise);
+}
+progress[data-color="#93674F"]::-webkit-progress-value {
+  background: var(--brown);
+}
+progress[data-color="#934F6F"]::-webkit-progress-value {
+  background: var(--magenta);
+}
+progress[data-color="#3F82B2"]::-webkit-progress-value {
+  background: var(--blue);
+}
+progress[data-color="#97A0AC"]::-webkit-progress-value {
+  background: var(--navy-grey);
+}
+progress[data-color="#7F9161"]::-webkit-progress-value {
+  background: var(--army-grey);
+}
+progress[data-color="#CAB361"]::-webkit-progress-value {
+  background: var(--gold);
+}
+progress[data-color="#BE6C49"]::-webkit-progress-value {
+  background: var(--orange);
 }

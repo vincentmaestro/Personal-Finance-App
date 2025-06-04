@@ -1,9 +1,5 @@
 import jsonData from '../data.json';
-
-type page = {
-    pageNumber: number,
-    skip: number
-}
+import { page } from '@/utils/types';
 
 export function paginationReducer(page: page, action: { type: string, value: string }) {
     switch(action.type) {

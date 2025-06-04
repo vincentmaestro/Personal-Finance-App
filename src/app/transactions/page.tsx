@@ -57,11 +57,11 @@ export default function Transactions() {
         <div className="w-full bg-light-2 px-16 py-14">
             <h1 className="text-2xl font-semibold mb-5">Transactions</h1>
             <div className="flex items-center justify-between mb-8">
-                <input type="text" placeholder="Search Transaction" value={search} className='bg-light px-3 py-1 border border-lighter-text focus:border-ash-like rounded-lg outline-none w-[35%]' onChange={performSearch} />
+                <input type="text" placeholder="Search Transaction" value={search} className='bg-light px-3 py-1 border border-lighter-text focus:border-navy rounded-lg outline-none w-[35%]' onChange={performSearch} />
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2">
                         <span>Sort by</span>
-                        <select className='border border-ash-like px-2 py-1 rounded-lg outline-none'>
+                        <select className='border border-navy px-2 py-1 rounded-lg outline-none'>
                             { sortBy.map((option, index) => (
                                 <option key={index} value={option.value}>{option.label}</option>
                             )) }
@@ -69,7 +69,7 @@ export default function Transactions() {
                     </div>
                     <div className="flex items-center gap-2">
                         <span>Category</span>
-                        <select className='border border-ash-like px-2 py-1 rounded-lg outline-none' value={category} onChange={filterCategory}>
+                        <select className='border border-navy px-2 py-1 rounded-lg outline-none' value={category} onChange={filterCategory}>
                             { categories.map((category, index) => (
                                 <option key={index} value={category.label}>{category.label}</option>
                             )) }
@@ -104,18 +104,18 @@ export default function Transactions() {
                     </tbody>
                 </table>
                 <div className="mt-5 flex items-center justify-between">
-                    <button disabled={page.pageNumber == 1 ? true : false} className='flex items-center gap-4 px-3 py-1 shadow shadow-ash-like rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed' onClick={() => goToPage('prev')}>
+                    <button disabled={page.pageNumber == 1 ? true : false} className='flex items-center gap-4 px-3 py-1 shadow shadow-navy rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed' onClick={() => goToPage('prev')}>
                         <LeftCaret />
                         <span>Prev</span>
                     </button>
                     <ul className='flex items-center gap-x-4'>
                         { pageData.p.map((pageNumber, index) => (
                             <li key={index}>
-                                <button value={pageNumber} onClick={() => goToPage(String(pageNumber))} className={`px-3 py-1 shadow shadow-ash-like rounded-sm cursor-pointer ${page.pageNumber == pageNumber ? 'bg-dark text-light' : 'initial'} hover:bg-light-text hover:text-light`}>{pageNumber}</button>
+                                <button value={pageNumber} onClick={() => goToPage(String(pageNumber))} className={`px-3 py-1 shadow shadow-navy rounded-sm cursor-pointer ${page.pageNumber == pageNumber ? 'bg-dark text-light' : 'initial'} hover:bg-light-text hover:text-light`}>{pageNumber}</button>
                             </li>
                         )) }
                     </ul>
-                    <button disabled={page.pageNumber == pageData.p.length ? true : false} className='flex items-center gap-4 px-3 py-1 shadow shadow-ash-like rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed' onClick={() => goToPage('next')}>
+                    <button disabled={page.pageNumber == pageData.p.length ? true : false} className='flex items-center gap-4 px-3 py-1 shadow shadow-navy rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed' onClick={() => goToPage('next')}>
                         <span>Next</span>
                         <RightCaret />
                     </button>
