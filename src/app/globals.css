@@ -174,16 +174,24 @@ body {
   color: var(--dark);
 }
 
-.transactions-table {
+table {
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-.transactions-table th {
+table th {
   padding: .8rem 0;
 }
 
-.transactions-table td {
+/* .transactions-table th:first-child {
+  width: 28%;
+} */
+
+.recurring-bills-table th:first-child {
+  width: 48%;
+}
+
+table td {
   text-align: center;
   padding: 0.8rem 0 0.8rem 1rem;
 }
@@ -249,4 +257,18 @@ progress[data-color="#CAB361"]::-webkit-progress-value {
 }
 progress[data-color="#BE6C49"]::-webkit-progress-value {
   background: var(--orange);
+}
+
+.atp::-webkit-progress-bar, .atp::-webkit-progress-value {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: all .5s;
+}
+.wfp::-webkit-progress-bar, .wfp::-webkit-progress-value {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  transition: all .5s;
+}
+.wfp::-webkit-progress-bar {
+  background: var(--red);
 }

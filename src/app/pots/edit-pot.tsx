@@ -1,0 +1,99 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
+import { currentItem, pot } from '@/utils/types';
+import { colors } from '@/utils/colors';
+import { useContext, useState } from 'react';
+import { potsContext } from '@/app/pots/page';
+
+export default function EditPot({ pot, index, setCurrentPot }: {
+    pot: pot,
+    index: number,
+    setCurrentPot: React.Dispatch<React.SetStateAction<currentItem>>
+}) {
+    const [data, setData] = useState({
+        potName: pot.name,
+        targetAmount: pot.target,
+        theme: pot.theme
+    });
+    const [errorAt, setErrorAt] = useState(-1);
+    const { pots, setPots } = useContext(potsContext)!;
+
+    function addPot() {
+        if(!data.potName) setErrorAt(0);
+        else if(!data.targetAmount) setErrorAt(1);
+        else if(!data.theme) setErrorAt(2);
+        else {
+            const newPot = {
+                name: data.potName,
+                target: data.targetAmount,
+                total: pot.total,
+                theme: data.theme,
+                percent: pot.percent
+            };
+
+            let temp = [...pots];
+            temp[index] = newPot;
+            setPots(temp);
+            setCurrentPot(currentPot => ({ ...currentPot, edit: -1 }));
+            setData({
+                potName: '',
+                targetAmount: 0,
+                theme: ''
+            });
+        }
+    }
+
+    return(
+        <div className="w-full h-screen fixed left-0 top-0 flex justify-center items-center bg-[#00000080] z-[1]">
+            <div className="w-2/6 bg-light rounded-xl px-7 pt-4 pb-6">
+                <div className="flex justify-end">
+                    <div className="cursor-pointer" onClick={() => setCurrentPot(currentPot => ({ ...currentPot, edit: -1 }))}>
+                        <CloseModalIcon />
+                    </div>
+                </div>
+                <div className='mb-6'>
+                    <h1 className='text-2xl font-semibold'>Edit Pot</h1>
+                </div>
+                <div className="mb-3">
+                    <h3 className='text-sm text-light-text font-semibold mb-0.5'>Pot Name</h3>
+                    <input
+                    type="text"
+                    className={`w-full outline-none p-1 border border-lighter-text focus:border-navy rounded-sm ${errorAt == 0 ? 'border border-red-400' : ''}`}
+                    value={data.potName}
+                    onChange={e => {setData({ ...data, potName: e.target.value }); setErrorAt(-1)}}
+                    />
+                </div>
+                <div className="mb-3">
+                    <h3 className='text-sm text-light-text font-semibold mb-0.5'>Target Amount</h3>
+                    <input
+                    type="number"
+                    min={1}
+                    className={`w-full outline-none p-1 border border-lighter-text focus:border-navy rounded-sm ${errorAt == 1 ? 'border border-red-400' : ''}`}
+                    value={data.targetAmount}
+                    onChange={e => {setData({ ...data, targetAmount: parseInt(e.target.value) }); setErrorAt(-1)}}
+                    />
+                </div>
+                <div className='mb-3'>
+                    <h3 className='text-sm text-light-text font-semibold mb-0.5'>Theme</h3>
+                    <Select value={data.theme} onValueChange={value => {setData({ ...data, theme: value }); setErrorAt(-1)}}>
+                        <SelectTrigger className={`w-full ${errorAt == 2 ? 'border border-red-400' : ''}`}>
+                            <SelectValue placeholder="Select Theme" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            { colors.map((color, index) => (
+                                <SelectItem
+                                key={index}
+                                value={color.value}
+                                >
+                                    <div className="w-3 h-3 rounded-[50%]" style={{backgroundColor: color.value}} />
+                                    {color.label}
+                                </SelectItem>
+                            )) }
+                        </SelectContent>
+                    </Select>
+                </div>
+                <button className='bg-dark text-light py-1.5 rounded-sm w-full text-center cursor-pointer mt-4 hover:bg-light-text' onClick={addPot}>Update Pot</button>
+            </div>
+        </div>
+    )
+}

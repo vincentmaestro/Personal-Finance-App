@@ -1,6 +1,5 @@
 import Pot from '../assets/icons/icon-pot.fed0644d.svg';
 
-
 export default function Home() {
   return (
     <div className="w-full bg-light-2 p-8">

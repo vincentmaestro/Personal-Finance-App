@@ -1,15 +1,16 @@
 "use client";
 import { createContext, useMemo, useState } from 'react';
 import jsonData from '../data.json';
-import BudgetCard from './budget-card';
-import BudgetSummary from './budgetsummary';
-import { budgets } from "@/utils/types";
+import Budget from './budget';
+import BudgetSummary from './budget-summary';
+import { budgets, categories } from "@/utils/types";
 import { categories as cat } from '@/utils/categories';
-import AddBudget from '@/components/add-budget';
+import AddBudget from './add-budget';
 
 export const budgetsContext = createContext<{
     budgets: budgets,
     setBudgets: React.Dispatch<React.SetStateAction<budgets>>
+    categories: categories
 } | undefined>(undefined);
 
 export default function Budgets() {
@@ -41,7 +42,7 @@ export default function Budgets() {
     }, [initialBudgets]);
 
     return (
-        <budgetsContext.Provider value={{ budgets: initialBudgets, setBudgets:setInitialBudgets }}>
+        <budgetsContext.Provider value={{ budgets: initialBudgets, setBudgets: setInitialBudgets, categories: data.categories }}>
             <div className="w-full bg-light-2 px-16 py-14">
                 <AddBudget
                 budgetModal={budgetModal}
@@ -62,7 +63,7 @@ export default function Budgets() {
                     <BudgetSummary budgets={data.budgets} />
                     <div className="col-start-2 col-span-2 flex flex-col gap-y-7">
                         { data.budgets.map((budget, index) => (
-                            <BudgetCard key={index} budget={budget} index={index} />
+                            <Budget key={index} budget={budget} index={index} />
                         )) }
                     </div>
                 </div>

@@ -4,9 +4,10 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { budget } from '@/utils/types';
 import RightCaret from '../../assets/icons/icon-caret-right.svg';
-import DeleteBudget from '@/components/delete-budget';
+import EditBudget from './edit-budget';
+import DeleteBudget from './delete-budget';
 
-export default function BudgetCard({ budget, index }: {
+export default function Budget({ budget, index }: {
     budget: budget,
     index: number
 }) {
@@ -34,8 +35,11 @@ export default function BudgetCard({ budget, index }: {
 
     return(
         <div className='p-6 bg-light rounded-xl'>
+            { currentBudget.edit == index &&
+                <EditBudget budget={budget} index={index} setCurrentBudget={setCurrentBudget} />
+            }
             { currentBudget.delete == index &&
-                <DeleteBudget budget={budget} currentBudget={currentBudget} setCurrentBudget={setCurrentBudget} />
+                <DeleteBudget budget={budget} setCurrentBudget={setCurrentBudget} />
             }
             <div className='relative'>
                 <div className="flex items-center justify-between">
@@ -47,7 +51,14 @@ export default function BudgetCard({ budget, index }: {
                 </div>
                 { currentBudget.toggle == index &&
                     <div id='budget-menu' className="bg-light p-4 rounded-xl w-[26%] absolute top-10 right-0 shadow">
-                        <button className='cursor-pointer w-full text-center'>Edit Budget</button>
+                        <button
+                        className='cursor-pointer w-full text-center'
+                        onClick={() => setCurrentBudget(currentBudget => {
+                            return { ...currentBudget, toggle: -1, edit: index };
+                        })}
+                        >
+                            Edit Budget
+                        </button>
                         <hr className='bg-dark my-4' />
                         <button
                         className='cursor-pointer text-red w-full text-center'

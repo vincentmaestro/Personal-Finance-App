@@ -1,37 +1,29 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
-import { categories, budgets } from '@/utils/types';
+import { budget, currentItem } from '@/utils/types';
 import { colors } from '@/utils/colors';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { budgetsContext } from '@/app/budgets/page';
 import jsonData from '@/app/data.json';
 
-export default function AddBudget({ budgetModal, setBudgetModal, categories, initialBudgets, setInitialBudgets }: {
-    budgetModal: boolean,
-    setBudgetModal: React.Dispatch<React.SetStateAction<boolean>>,
-    categories: categories,
-    initialBudgets: budgets,
-    setInitialBudgets: React.Dispatch<React.SetStateAction<budgets>>
+
+export default function EditBudget({ budget, index, setCurrentBudget }: {
+    budget: budget,
+    index: number,
+    setCurrentBudget: React.Dispatch<React.SetStateAction<currentItem>>
 }) {
     const [data, setData] = useState({
-        category: '',
-        maxSpending: '',
-        theme: ''
+        category: budget.name,
+        maxSpending: String(budget.value),
+        theme: budget.theme
     });
     const [errorAt, setErrorAt] = useState(-1);
+    const { budgets, setBudgets, categories } = useContext(budgetsContext)!;
 
-    function addBudget() {
-        if(!data.category) {
-            setErrorAt(0);
-            return;
-        }
-        else if(!data.maxSpending) {
-            setErrorAt(1);
-            return;
-        }
-        else if(!data.theme) {
-            setErrorAt(2);
-            return;
-        }
+    function editBudget() {
+        if(!data.category) setErrorAt(0);
+        else if(!data.maxSpending) setErrorAt(1);
+        else if(!data.theme) setErrorAt(1);
         else {
             const transactions = jsonData.transactions.filter(transaction => transaction.category == data.category).slice(0, 3);
             const spent = transactions.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0) * -1;
@@ -45,8 +37,12 @@ export default function AddBudget({ budgetModal, setBudgetModal, categories, ini
                 date: date
             };
 
-            setInitialBudgets([...initialBudgets, budget]);
-            setBudgetModal(!budgetModal);
+            let temp = [...budgets];
+            temp[index] = budget;
+            setBudgets(temp);
+            setCurrentBudget(currentBudget => {
+                return { ...currentBudget, edit: -1 };
+            });
             setData({
                 category: '',
                 maxSpending: '',
@@ -55,18 +51,19 @@ export default function AddBudget({ budgetModal, setBudgetModal, categories, ini
         }
     }
 
-    if(budgetModal)
     return(
         <div className="w-full h-screen fixed left-0 top-0 flex justify-center items-center bg-[#00000080] z-[1]">
             <div className="w-2/6 bg-light rounded-xl p-7">
                 <div className="flex justify-end">
-                    <div className="cursor-pointer" onClick={() => setBudgetModal(!budgetModal)}>
+                    <div className="cursor-pointer" onClick={() => setCurrentBudget(currentBudget => {
+                        return { ...currentBudget, edit: -1 };
+                    })}>
                         <CloseModalIcon />
                     </div>
                 </div>
                 <div className='mb-5'>
-                    <h1 className='text-2xl font-semibold mb-1'>Add New Budget</h1>
-                    <p className='text-sm text-light-text font-semibold w-[90%]'>Choose a category to set a spending budget. These categories can help you monitor spending.</p>
+                    <h1 className='text-2xl font-semibold mb-1'>Edit Budget</h1>
+                    <p className='text-sm text-light-text font-semibold'>As your budgets changes, feel free to update your spending limits.</p>
                 </div>
                 <div className='mb-4'>
                     <h3 className='text-sm text-light-text font-semibold mb-0.5'>Budget Category</h3>
@@ -117,7 +114,7 @@ export default function AddBudget({ budgetModal, setBudgetModal, categories, ini
                         </SelectContent>
                     </Select>
                 </div>
-                <button className='bg-dark text-light py-1.5 rounded-sm w-full text-center cursor-pointer mt-4 hover:bg-light-text' onClick={addBudget}>Add Budget</button>
+                <button className='bg-dark text-light py-1.5 rounded-sm w-full text-center cursor-pointer mt-4 hover:bg-light-text' onClick={editBudget}>Update Budget</button>
             </div>
         </div>
     )

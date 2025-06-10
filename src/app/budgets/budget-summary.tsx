@@ -5,7 +5,7 @@ export default function BudgetSummary({ budgets }: {
     budgets: budgets
 }) {
     return(
-        <div className="bg-light sticky top-0 col-start-1 col-span-1 self-start flex flex-col items-center pb-4 rounded-2xl">
+        <div className="bg-light sticky top-3 col-start-1 col-span-1 self-start flex flex-col items-center pb-4 rounded-2xl">
             <div className="relative">
                 <PieChart width={300} height={300}>
                     <Pie data={budgets} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={70} outerRadius={110}>

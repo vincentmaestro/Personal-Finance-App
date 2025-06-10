@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useReducer, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { sortBy, paginationReducer, pageReducer } from './page-logic';
+import { sortBy as sortOptions, paginationReducer, pageReducer, sortTransactions } from '@/utils/transactions-logic';
 import { categories } from '@/utils/categories';
 import Image from 'next/image';
 import LeftCaret from '../../assets/icons/icon-caret-left.svg';
@@ -19,11 +19,13 @@ export default function Transactions() {
     const firstCategory = params.get('category') || 'All Transactions';
     const[category, setCategory] = useState(firstCategory);
     const [search, setSearch] = useState('');
+    const [sortBy, setSortBy] = useState('newest');
 
     const pageData = useMemo(() => {
         const x = pageReducer(search, category, page);
+        sortTransactions(sortBy, x.t);
         return x;
-    }, [page.pageNumber, category, search]);
+    }, [page.pageNumber, category, search, sortBy]);
 
     function goToPage(pageNumber: string) {
         if(pageNumber == 'prev') {
@@ -61,8 +63,12 @@ export default function Transactions() {
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2">
                         <span>Sort by</span>
-                        <select className='border border-navy px-2 py-1 rounded-lg outline-none'>
-                            { sortBy.map((option, index) => (
+                        <select
+                        value={sortBy}
+                        className='border border-navy px-2 py-1 rounded-lg outline-none'
+                        onChange={e => setSortBy(e.target.value)}
+                        >
+                            { sortOptions.map((option, index) => (
                                 <option key={index} value={option.value}>{option.label}</option>
                             )) }
                         </select>
@@ -80,7 +86,7 @@ export default function Transactions() {
             <div>
                 <table className='transactions-table bg-light w-full rounded-xl'>
                     <thead>
-                        <tr>
+                        <tr className='text-light-text text-sm'>
                             <th>Recipient / Sender</th>
                             <th>Category</th>
                             <th>Transaction Date</th>
@@ -90,7 +96,7 @@ export default function Transactions() {
                     <tbody>
                         {
                             pageData.t.map((txn, index) => (
-                                <tr key={index} className='text-light-text'>
+                                <tr key={index} className='text-light-text border-t border-t-light-2'>
                                     <td className='flex items-center gap-4'>
                                         <Image src={txn.avatar.slice(1)} alt={txn.name} width={40} height={40} className='rounded-[50%]' />
                                         <h2>{txn.name}</h2>

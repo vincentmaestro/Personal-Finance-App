@@ -1,5 +1,5 @@
-import jsonData from '../data.json';
-import { page } from '@/utils/types';
+import jsonData from '../app/data.json';
+import { page, transactions } from '@/utils/types';
 
 export function paginationReducer(page: page, action: { type: string, value: string }) {
     switch(action.type) {
@@ -56,4 +56,26 @@ export function pageReducer(search: string, category: string, page: page) {
     t = t.slice(page.skip, page.pageNumber * 10);
 
     return { t, p };
+}
+
+export function sortTransactions(keyWord: string, data: transactions) {
+    switch(keyWord) {
+        case 'newest':
+            return data.sort((a, b) => new Date(b.date).getUTCDate() - new Date(a.date).getUTCDate());
+
+        case 'oldest':
+            return data.sort((a, b) => new Date(a.date).getUTCDate() - new Date(b.date).getUTCDate());
+
+        case 'a-z':
+            return data.sort((a, b) => a.name.localeCompare(b.name));
+
+        case 'z-a':
+            return data.sort((a, b) => b.name.localeCompare(a.name));
+
+        case 'highest':
+            return data.sort((a, b) => a.amount - b.amount);
+
+        case 'lowest':
+            return data.sort((a, b) => b.amount - a.amount);
+    }
 }

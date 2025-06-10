@@ -17,6 +17,7 @@ export type transaction = {
     date: string;
     amount: number;
     recurring: boolean;
+    isDueSoon?: boolean;
 }
 
 export type transactions = transaction[]
@@ -32,8 +33,28 @@ export type budget = {
 
 export type budgets = budget[]
 
-export type currentBudget = {
+export type currentItem = {
     toggle: number,
     edit: number,
     delete: number
+}
+
+export type category = {
+    value: string,
+    label: string
+}
+
+export type pot = {
+    name: string,
+    target: number,
+    total: number,
+    theme: string,
+    percent?: string
+}
+
+export type pots = pot[]
+
+export type modifiedPot = {
+    add: number,
+    withdraw: number
 }

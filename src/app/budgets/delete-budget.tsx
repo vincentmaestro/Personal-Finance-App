@@ -1,12 +1,11 @@
-import { budget, currentBudget } from "@/utils/types";
+import { budget, currentItem } from "@/utils/types";
 import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { useContext } from 'react';
 import { budgetsContext } from '@/app/budgets/page';
 
-export default function DeleteBudget({ budget, currentBudget, setCurrentBudget }: {
+export default function DeleteBudget({ budget, setCurrentBudget }: {
     budget: budget,
-    currentBudget: currentBudget,
-    setCurrentBudget: React.Dispatch<React.SetStateAction<currentBudget>>
+    setCurrentBudget: React.Dispatch<React.SetStateAction<currentItem>>
 }) {
     const {budgets, setBudgets} = useContext(budgetsContext)!;
 
