@@ -24,6 +24,7 @@ export default function Transactions() {
     const pageData = useMemo(() => {
         const x = pageReducer(search, category, page);
         sortTransactions(sortBy, x.t);
+        
         return x;
     }, [page.pageNumber, category, search, sortBy]);
 
@@ -51,6 +52,7 @@ export default function Transactions() {
     }
     function performSearch(e: React.ChangeEvent<HTMLInputElement>) {
         setSearch(e.target.value);
+        dispatch({ type: 'page', value: '1' });
         params.set('page', '1');
         router.push(`?${params.toString()}`);
     }
@@ -103,7 +105,7 @@ export default function Transactions() {
                                     </td>
                                     <td>{txn.category}</td>
                                     <td>{new Date(txn.date).toDateString()}</td>
-                                    <td className={txn.amount.toString()[0] == '-' ? 'text-dark font-semibold' : 'text-green font-semibold'}>{txn.amount.toString()[0] == '-' ? '$' : '$+'}{txn.amount.toFixed(2)}</td>
+                                    <td className={txn.amount.toString()[0] == '-' ? 'text-dark font-semibold' : 'text-green font-semibold'}>{txn.amount.toString()[0] == '-' ? '-$' : '+$'}{txn.amount.toFixed(2).slice(1)}</td>
                                 </tr>
                             ))
                         }

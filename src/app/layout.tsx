@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SideNav from "@/components/side-nav";
+import DataProvider from "../utils/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex">
           <SideNav />
-          { children }
+          <DataProvider>
+            { children }
+          </DataProvider>
         </div>
       </body>
     </html>

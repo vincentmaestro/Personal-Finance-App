@@ -1,4 +1,10 @@
 
+export type balance = {
+    current: number,
+    income: number,
+    expenses: number
+}
+
 export type page = {
     pageNumber: number,
     skip: number
@@ -49,7 +55,7 @@ export type pot = {
     target: number,
     total: number,
     theme: string,
-    percent?: string
+    percent: string
 }
 
 export type pots = pot[]

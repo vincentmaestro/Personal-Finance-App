@@ -1,9 +1,8 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
-import { categories, pots } from '@/utils/types';
+import { pots } from '@/utils/types';
 import { colors } from '@/utils/colors';
-import { useState } from 'react';
-import jsonData from '@/app/data.json';
+import React, { useState } from 'react';
 
 export default function AddPot({ potModal, setPotModal, pots, setPots }: {
     potModal: boolean,

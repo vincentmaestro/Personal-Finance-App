@@ -2,6 +2,7 @@ import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { pot, modifiedPot } from '@/utils/types';
 import { useContext, useState } from 'react';
 import { potsContext } from '@/app/pots/page';
+import { useData } from '../../utils/provider';
 
 export default function AddToPot({ pot, index, setPotToBeModified }: {
     pot: pot,
@@ -11,6 +12,8 @@ export default function AddToPot({ pot, index, setPotToBeModified }: {
     const [visualWidth, setVisualWidth] = useState('0');
     const [currentPot, setCurrentPot] = useState(pot);
     const { pots, setPots } = useContext(potsContext)!;
+    const { balance, setBalance } = useData();
+    const [amountAdded, setAmountAdded] = useState(0);
 
     function effectVisualChange(e: React.ChangeEvent<HTMLInputElement>) {
         const maxAdd = pot.target - pot.total;
@@ -21,6 +24,8 @@ export default function AddToPot({ pot, index, setPotToBeModified }: {
             e.target.value = String(maxAdd);
         }
 
+        setAmountAdded(parseInt(amountToBeAdded));
+        
         const temp = { ...currentPot };
         const { target } = temp;
         const percentageIncrease = parseInt(amountToBeAdded)/target * 100;
@@ -32,7 +37,12 @@ export default function AddToPot({ pot, index, setPotToBeModified }: {
         });
     }
 
-    function addToPot() {
+    function addToPot() {  
+        const { current, expenses } = balance;
+        const currentBalance = current - amountAdded;
+        const currentExpenses = expenses + amountAdded;
+        setBalance({ ...balance, current: currentBalance, expenses: currentExpenses });
+
         const temp = [...pots];
         temp[index] = currentPot;
         setPots(temp);

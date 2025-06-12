@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { budget } from '@/utils/types';
-import RightCaret from '../../assets/icons/icon-caret-right.svg';
+import RightCaret from '@/assets/icons/icon-caret-right.svg';
 import EditBudget from './edit-budget';
 import DeleteBudget from './delete-budget';
 

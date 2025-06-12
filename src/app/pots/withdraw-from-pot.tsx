@@ -2,6 +2,7 @@ import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { pot, modifiedPot } from '@/utils/types';
 import { useContext, useState } from 'react';
 import { potsContext } from '@/app/pots/page';
+import { useData } from '../../utils/provider';
 
 export default function WithdrawFromPot({ pot, index, setPotToBeModified }: {
     pot: pot,
@@ -11,6 +12,8 @@ export default function WithdrawFromPot({ pot, index, setPotToBeModified }: {
     const [visualWidth, setVisualWidth] = useState(pot.percent);
     const [currentPot, setCurrentPot] = useState(pot);
     const { pots, setPots } = useContext(potsContext)!;
+    const { balance, setBalance } = useData();
+    const [amountRemoved, setAmountRemoved] = useState(0);
 
     function effectVisualChange(e: React.ChangeEvent<HTMLInputElement>) {
         const maxRemove = pot.total;
@@ -20,6 +23,8 @@ export default function WithdrawFromPot({ pot, index, setPotToBeModified }: {
             amountToBeRemoved = String(maxRemove);
             e.target.value = String(maxRemove);
         }
+
+        setAmountRemoved(parseInt(amountToBeRemoved));
 
         const temp = { ...currentPot };
         const { target, total } = temp;
@@ -33,6 +38,11 @@ export default function WithdrawFromPot({ pot, index, setPotToBeModified }: {
     }
 
     function withdrawFromPot() {
+        const { current, expenses } = balance;
+        const currentBalance = current + amountRemoved;
+        const currentExpenses = expenses - amountRemoved;
+        setBalance({ ...balance, current: currentBalance, expenses: currentExpenses });
+
         const temp = [...pots];
         temp[index] = currentPot;
         setPots(temp);

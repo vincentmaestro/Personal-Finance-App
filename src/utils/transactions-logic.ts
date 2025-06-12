@@ -77,5 +77,7 @@ export function sortTransactions(keyWord: string, data: transactions) {
 
         case 'lowest':
             return data.sort((a, b) => b.amount - a.amount);
+
+        default: return data;
     }
 }

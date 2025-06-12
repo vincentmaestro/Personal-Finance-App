@@ -7,7 +7,7 @@ import WithdrawFromPot from './withdraw-from-pot';
 
 export default function Pot({ pot, index }: {
     pot: pot,
-    index: number
+    index: number,
 }) {
     const [currentPot, setCurrentPot] = useState({
         toggle: -1,

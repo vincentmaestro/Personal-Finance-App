@@ -1,11 +1,11 @@
 "use client";
-import { createContext, useMemo, useState } from 'react';
-import jsonData from '../data.json';
+import { createContext, useState } from 'react';
 import Budget from './budget';
+import AddBudget from './add-budget';
 import BudgetSummary from './budget-summary';
 import { budgets, categories } from "@/utils/types";
 import { categories as cat } from '@/utils/categories';
-import AddBudget from './add-budget';
+import { useData } from '../../utils/provider';
 
 export const budgetsContext = createContext<{
     budgets: budgets,
@@ -14,42 +14,24 @@ export const budgetsContext = createContext<{
 } | undefined>(undefined);
 
 export default function Budgets() {
-    const [initialBudgets, setInitialBudgets] = useState([
-        { name: 'Entertainment', value: 50, spent: 0, theme: '#277C78', transactions: jsonData.transactions.filter(entry => entry.category == 'Entertainment').slice(0, 3), date: jsonData.transactions.filter(entry => entry.category == 'Entertainment').slice(0, 3).map(entry => entry.date) },
-        { name: 'Personal Care', value: 100, spent: 0, theme: '#626070', transactions: jsonData.transactions.filter(entry => entry.category == 'Personal Care').slice(0, 3), date: jsonData.transactions.filter(entry => entry.category == 'Personal Care').slice(0, 3).map(entry => entry.date) },
-        { name: 'Dining Out', value: 75, spent: 0, theme: '#934F6F', transactions: jsonData.transactions.filter(entry => entry.category == 'Dining Out').slice(0, 3), date: jsonData.transactions.filter(entry => entry.category == 'Dining Out').slice(0, 3).map(entry => entry.date) },
-        { name: 'Bills', value: 750, spent: 0, theme: '#82C9D7', transactions: jsonData.transactions.filter(entry => entry.category == 'Bills').slice(0, 3), date: jsonData.transactions.filter(entry => entry.category == 'Bills').slice(0, 3).map(entry => entry.date) },
-    ]);
+    const { budgets, setBudgets } = useData();
     const [budgetModal, setBudgetModal] = useState(false);
 
-    const data = useMemo(() => {
-        const spent = initialBudgets.map(b => b.transactions.reduce((accumulator, currentValue) => {
-            const amt = accumulator + currentValue.amount;
-            return amt
-        }, 0) * -1);
-        
-        const budgets = initialBudgets.map((budget, index) => {
-            return { ...budget, spent: spent[index] };
-        });
-
-        const categories = cat.slice(1).map(category => {
-            const match = initialBudgets.filter(x => x.name == category.label)[0];
-            if(match) return { ...category, used: true };
-            else return category;
-        });
-
-        return { budgets, categories };
-    }, [initialBudgets]);
+    const categories = cat.slice(1).map(category => {
+        const match = budgets.filter(x => x.name == category.label)[0];
+        if(match) return { ...category, used: true };
+        else return category;
+    });
 
     return (
-        <budgetsContext.Provider value={{ budgets: initialBudgets, setBudgets: setInitialBudgets, categories: data.categories }}>
+        <budgetsContext.Provider value={{ budgets: budgets, setBudgets: setBudgets, categories: categories }}>
             <div className="w-full bg-light-2 px-16 py-14">
                 <AddBudget
                 budgetModal={budgetModal}
                 setBudgetModal={setBudgetModal}
-                categories={data.categories}
-                initialBudgets={initialBudgets}
-                setInitialBudgets={setInitialBudgets}
+                categories={categories}
+                initialBudgets={budgets}
+                setInitialBudgets={setBudgets}
                 />
                 <div className="flex items-center justify-between mb-5">
                     <h1 className='text-2xl font-semibold'>Budgets</h1>
@@ -60,9 +42,9 @@ export default function Budgets() {
                     </button>
                 </div>
                 <div className="grid grid-cols-3 gap-7">
-                    <BudgetSummary budgets={data.budgets} />
+                    <BudgetSummary budgets={budgets} />
                     <div className="col-start-2 col-span-2 flex flex-col gap-y-7">
-                        { data.budgets.map((budget, index) => (
+                        { budgets.map((budget, index) => (
                             <Budget key={index} budget={budget} index={index} />
                         )) }
                     </div>
