@@ -37,7 +37,7 @@ export default function EditBudget({ budget, index, setCurrentBudget }: {
                 date: date
             };
 
-            let temp = [...budgets];
+            const temp = [...budgets];
             temp[index] = budget;
             setBudgets(temp);
             setCurrentBudget(currentBudget => {

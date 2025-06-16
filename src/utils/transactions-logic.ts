@@ -48,7 +48,7 @@ export function pageReducer(search: string, category: string, page: page) {
         else return txn.category == category;
     });
 
-    let p = [];
+    const p = [];
     for(let i = 1; i <= Math.ceil(t.length / 10); i++) {
         p.push(i);
     }

@@ -31,7 +31,7 @@ export default function EditPot({ pot, index, setCurrentPot }: {
                 percent: pot.percent
             };
 
-            let temp = [...pots];
+            const temp = [...pots];
             temp[index] = newPot;
             setPots(temp);
             setCurrentPot(currentPot => ({ ...currentPot, edit: -1 }));

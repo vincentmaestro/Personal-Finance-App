@@ -11,7 +11,7 @@ export default function DeletePot({ pot, index, setCurrentPot }: {
     const {pots, setPots} = useContext(potsContext)!;
 
     function deletePot() {
-        let newPots = [...pots];
+        const newPots = [...pots];
         newPots.splice(index, 1);
         setPots(newPots);
         setCurrentPot(currentPot => ({ ...currentPot, delete: -1 }));

@@ -1,5 +1,5 @@
 "use client";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { sortBy as sortOptions, sortTransactions } from '@/utils/transactions-logic';
 import { useMemo, useState } from "react";
 import { useData } from "../../utils/provider";
