@@ -1,4 +1,4 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { sortBy as sortOptions  } from '@/utils/transactions-logic';
 import { categories } from '@/utils/categories';
 import FilterIcon from '@/assets/icons/icon-filter-mobile.svg';
