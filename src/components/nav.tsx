@@ -10,7 +10,7 @@ import ExpandButtonIcon from '../assets/icons/icon-minimize-menu.svg';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function SideNav() {
+export default function Nav() {
     const router = useRouter();
     const pathname = usePathname();
     const [isExpanded, setIsExpanded] = useState(true);
@@ -79,7 +79,7 @@ export default function SideNav() {
                 </div>
             </aside>
 
-            <nav className='hidden bg-dark w-full fixed bottom-0 px-4 max-mobile-lg:block pt-2 rounded-t-lg z-[1]'>
+            <nav className='hidden bg-dark w-full fixed bottom-0 px-4 max-mobile-lg:block pt-2 pb-1 rounded-t-lg z-[1]'>
                 <div className="flex justify-between">
                     <button 
                     className={`flex items-center gap-4 cursor-pointer rounded-t-xl py-3 px-6 hover:bg-light-text ${pathname == '/' ? 'bg-light-2 border-b-5 border-b-cyan text-dark' : ''}`}

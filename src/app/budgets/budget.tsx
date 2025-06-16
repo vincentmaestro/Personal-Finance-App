@@ -26,7 +26,7 @@ export default function Budget({ budget, index }: {
                 });
             }
         }
-    }, []);
+    }, [currentBudget]);
 
     function toggleMenu() {
         setCurrentBudget(currentBudget => {

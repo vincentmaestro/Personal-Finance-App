@@ -27,7 +27,7 @@ export default function Pot({ pot, index }: {
                 });
             }
         }
-    }, []);
+    }, [currentPot]);
 
     function toggleMenu() {
         setCurrentPot(currentBudget => {
