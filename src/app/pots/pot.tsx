@@ -1,5 +1,5 @@
 import { pot } from '@/utils/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditPot from './edit-pot';
 import DeletePot from './delete-pot';
 import AddToPot from './add-to-pot';
@@ -19,13 +19,16 @@ export default function Pot({ pot, index }: {
         withdraw: -1
     });
 
-    onmousedown = function(e) {
-        if(document.getElementById('pot-menu') && !document.getElementById('pot-menu')?.contains(e.target as HTMLElement)) {
-            setCurrentPot(currentPot => {
-                return { ...currentPot, toggle: -1 }
-            });
+    useEffect(() => {
+        onmousedown = function(e) {
+            if(document.getElementById('pot-menu') && !document.getElementById('pot-menu')?.contains(e.target as HTMLElement)) {
+                setCurrentPot(currentPot => {
+                    return { ...currentPot, toggle: -1 }
+                });
+            }
         }
-    }
+    }, []);
+
     function toggleMenu() {
         setCurrentPot(currentBudget => {
             const { toggle } = currentPot;

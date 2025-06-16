@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { budget } from '@/utils/types';
 import RightCaret from '@/assets/icons/icon-caret-right.svg';
 import EditBudget from './edit-budget';
@@ -17,15 +17,17 @@ export default function Budget({ budget, index }: {
         edit: -1,
         delete: -1
     });
-    
 
-    onmousedown = function(e) {
-        if(document.getElementById('budget-menu') && !document.getElementById('budget-menu')?.contains(e.target as HTMLElement)) {
-            setCurrentBudget(currentBudget => {
-                return { ...currentBudget, toggle: -1 }
-            });
+    useEffect(() => {
+        onmousedown = function(e) {
+            if(document.getElementById('budget-menu') && !document.getElementById('budget-menu')?.contains(e.target as HTMLElement)) {
+                setCurrentBudget(currentBudget => {
+                    return { ...currentBudget, toggle: -1 }
+                });
+            }
         }
-    }
+    }, []);
+
     function toggleMenu() {
         setCurrentBudget(currentBudget => {
             const { toggle } = currentBudget;
