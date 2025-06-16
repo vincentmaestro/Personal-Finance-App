@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Transactions from "./transactions";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 }
 
 export default function TransactionsPage() {
-    return <Transactions />;
+    return <Suspense fallback={
+        <div>Loading...</div>
+    }>
+        <Transactions />
+    </Suspense>;
 }

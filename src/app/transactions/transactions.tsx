@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useMemo, useReducer, useState } from 'react';
+import { useMemo, useReducer, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { paginationReducer, pageReducer, sortTransactions } from '@/utils/transactions-logic';
 import Image from 'next/image';
@@ -58,57 +58,53 @@ export default function Transactions() {
     }
     
     return(
-        <Suspense fallback={
-            <div>Loading...</div>
-        }>
-            <div className="w-full bg-light-2 px-16 py-14 max-desktop-sm:px-8 max-mobile:px-5">
-                <h1 className="text-2xl font-semibold mb-5">Transactions</h1>
-                
-                <TransactionFilters
-                search={search}
-                performSearch={performSearch}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                category={category}
-                filterCategory={filterCategory}
-                />
+        <div className="w-full bg-light-2 px-16 py-14 max-desktop-sm:px-8 max-mobile:px-5">
+            <h1 className="text-2xl font-semibold mb-5">Transactions</h1>
+            
+            <TransactionFilters
+            search={search}
+            performSearch={performSearch}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            category={category}
+            filterCategory={filterCategory}
+            />
 
-                <div>
-                    <table className='transactions-table bg-light w-full rounded-xl'>
-                        <thead>
-                            <tr className='text-light-text text-sm'>
-                                <th>Recipient / Sender</th>
-                                <th className='max-tablet:hidden'>Category</th>
-                                <th className='max-tablet:hidden'>Transaction Date</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                pageData.t.map((txn, index) => (
-                                    <tr key={index} className='text-light-text border-t border-t-light-2'>
-                                        <td className='flex items-center gap-4'>
-                                            <Image src={txn.avatar.slice(1)} alt={txn.name} width={40} height={40} className='rounded-[50%]' />
-                                            <h2 className='font-semibold'>{txn.name}</h2>
-                                        </td>
-                                        <td className='max-tablet:hidden'>{txn.category}</td>
-                                        <td className='max-tablet:hidden'>{new Date(txn.date).toDateString()}</td>
-                                        <td className={txn.amount.toString()[0] == '-' ? 'text-dark font-semibold' : 'text-green font-semibold'}>
-                                            {txn.amount.toString()[0] == '-' ? '-$' : '+$'}{txn.amount.toFixed(2).slice(1)}
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                </div>
-
-                <Pagination
-                page={page}
-                pageData={pageData.p}
-                goToPage={goToPage}
-                />
+            <div>
+                <table className='transactions-table bg-light w-full rounded-xl'>
+                    <thead>
+                        <tr className='text-light-text text-sm'>
+                            <th>Recipient / Sender</th>
+                            <th className='max-tablet:hidden'>Category</th>
+                            <th className='max-tablet:hidden'>Transaction Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            pageData.t.map((txn, index) => (
+                                <tr key={index} className='text-light-text border-t border-t-light-2'>
+                                    <td className='flex items-center gap-4'>
+                                        <Image src={txn.avatar.slice(1)} alt={txn.name} width={40} height={40} className='rounded-[50%]' />
+                                        <h2 className='font-semibold'>{txn.name}</h2>
+                                    </td>
+                                    <td className='max-tablet:hidden'>{txn.category}</td>
+                                    <td className='max-tablet:hidden'>{new Date(txn.date).toDateString()}</td>
+                                    <td className={txn.amount.toString()[0] == '-' ? 'text-dark font-semibold' : 'text-green font-semibold'}>
+                                        {txn.amount.toString()[0] == '-' ? '-$' : '+$'}{txn.amount.toFixed(2).slice(1)}
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </div>
-        </Suspense>
+
+            <Pagination
+            page={page}
+            pageData={pageData.p}
+            goToPage={goToPage}
+            />
+        </div>
     )
 }
