@@ -43,13 +43,14 @@ export default function AddPot({ potModal, setPotModal, pots, setPots }: {
     if(potModal)
     return(
         <div className="w-full h-screen fixed left-0 top-0 flex justify-center items-center bg-[#00000080] z-[1]">
-            <div className="w-2/6 bg-light rounded-xl px-7 pt-4 pb-6">
+            <div className="w-2/6 bg-light rounded-xl px-7 pt-4 pb-6 max-desktop:w-2/5 max-desktop-sm:w-[45%] max-tablet:w-7/12
+            max-tablet:p-6 max-mobile-lg:w-4/5 max-mobile:w-[90%] max-mobile:p-5">
                 <div className="flex justify-end">
                     <div className="cursor-pointer" onClick={() => setPotModal(!potModal)}>
                         <CloseModalIcon />
                     </div>
                 </div>
-                <div className='mb-6'>
+                <div className='mb-6 max-tablet:mb-4'>
                     <h1 className='text-2xl font-semibold'>Add New Pot</h1>
                 </div>
                 <div className="mb-3">

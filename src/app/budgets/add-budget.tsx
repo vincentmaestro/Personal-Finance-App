@@ -49,15 +49,16 @@ export default function AddBudget({ budgetModal, setBudgetModal, categories, ini
     if(budgetModal)
     return(
         <div className="w-full h-screen fixed left-0 top-0 flex justify-center items-center bg-[#00000080] z-[1]">
-            <div className="w-2/6 bg-light rounded-xl p-7">
+            <div className="w-2/6 bg-light rounded-xl p-7 max-desktop:w-2/5 max-desktop-sm:w-[45%] max-tablet:w-7/12
+            max-tablet:p-6 max-mobile-lg:w-4/5 max-mobile:w-[90%] max-mobile:p-5">
                 <div className="flex justify-end">
                     <div className="cursor-pointer" onClick={() => setBudgetModal(!budgetModal)}>
                         <CloseModalIcon />
                     </div>
                 </div>
                 <div className='mb-5'>
-                    <h1 className='text-2xl font-semibold mb-1'>Add New Budget</h1>
-                    <p className='text-sm text-light-text font-semibold w-[90%]'>Choose a category to set a spending budget. These categories can help you monitor spending.</p>
+                    <h1 className='text-2xl font-semibold mb-1 max-desktop:mb-2 max-tablet:text-center'>Add New Budget</h1>
+                    <p className='text-sm text-light-text font-semibold w-[90%] max-desktop:w-[95%] max-tablet:text-base max-tablet:w-full'>Choose a category to set a spending budget. These categories can help you monitor spending.</p>
                 </div>
                 <div className='mb-4'>
                     <h3 className='text-sm text-light-text font-semibold mb-0.5'>Budget Category</h3>

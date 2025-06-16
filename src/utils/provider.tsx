@@ -53,6 +53,15 @@ export default function DataProvider({ children }: {
         }
     ]);
 
+    const spent = initialBudgets.map(b => b.transactions.reduce((accumulator, currentValue) => {
+        const amt = accumulator + currentValue.amount;
+        return amt
+    }, 0) * -1);
+      
+    const budgets = initialBudgets.map((budget, index) => {
+        return { ...budget, spent: spent[index] };
+    });
+
     //Obtain percentage completed for each pot and append to original pot data before setting as default/initial state
 
     const percentSaved = jsonData.pots.map(pot => ((pot.total/pot.target) * 100).toFixed(2));
@@ -87,7 +96,7 @@ export default function DataProvider({ children }: {
             balance: balance,
             setBalance: setBalance,
             transactions: jsonData.transactions,
-            budgets: initialBudgets,
+            budgets: budgets,
             setBudgets: setInitialBudgets,
             pots: initialPots,
             setPots: setInitialPots,

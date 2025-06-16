@@ -35,7 +35,7 @@ export default function Pot({ pot, index }: {
     }
     
     return(
-        <div className="p-6 bg-light rounded-xl flex flex-col gap-y-3.5 shadow">
+        <div className="p-6 bg-light rounded-xl flex flex-col gap-y-3.5 shadow max-tablet:py-8 max-mobile-sm:px-4">
             { currentPot.edit == index &&
                 <EditPot pot={pot} index={index} setCurrentPot={setCurrentPot} />
             }
@@ -55,7 +55,7 @@ export default function Pot({ pot, index }: {
                 </div>
                 <button className='text-2xl font-semibold tracking-wide cursor-pointer' onClick={toggleMenu}>...</button>
                 { currentPot.toggle == index &&
-                    <div id='pot-menu' className="bg-light p-3 rounded-xl w-[38%] absolute top-10 right-0 shadow">
+                    <div id='pot-menu' className="bg-light p-3 rounded-xl w-[38%] absolute top-10 right-0 shadow max-mobile-lg:w-[45%] max-mobile:w-[50%]">
                         <button
                         className='cursor-pointer w-full text-center'
                         onClick={() => setCurrentPot(currentPot => {
@@ -87,9 +87,10 @@ export default function Pot({ pot, index }: {
                     <span className="text-sm text-light-text">Target of ${pot.target}</span>
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-x-4">
+            <div className="grid grid-cols-2 gap-4 max-mobile-sm:grid-cols-1 max-mobile-sm:mt-4">
                 <button
-                className='bg-light-2 px-4 py-2.5 rounded-lg cursor-pointer shadow border border-transparent transition-colors duration-300 hover:border hover:border-light-text'
+                className='bg-light-2 px-4 py-2.5 rounded-lg cursor-pointer shadow border border-transparent
+                transition-colors duration-300 hover:border hover:border-light-text'
                 onClick={() => setPotToBeModified(pot => ({ ...pot, add: index }))}
                 >
                     + Add Money

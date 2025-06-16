@@ -86,6 +86,15 @@
   --color-army-grey: var(--army-grey);
   --color-gold: var(--gold);
   --color-orange: var(--orange);
+
+  --breakpoint-desktop: 80rem;
+  --breakpoint-desktop-sm: 64rem;
+  --breakpoint-tablet: 48rem;
+  --breakpoint-tablet-sm: 40rem;
+  --breakpoint-mobile-lg: 36rem;
+  --breakpoint-mobile: 26.65rem;
+  --breakpoint-mobile-sm: 23.44rem;
+  --breakpoint-mobile-xs: 20rem;
 }
 
 @theme inline {
@@ -176,16 +185,12 @@ body {
 
 table {
   border-collapse: collapse;
-  table-layout: fixed;
+  /* table-layout: fixed; */
 }
 
 table th {
   padding: .8rem 0;
 }
-
-/* .transactions-table th:first-child {
-  width: 28%;
-} */
 
 .recurring-bills-table th:first-child {
   width: 48%;
@@ -194,6 +199,12 @@ table th {
 table td {
   text-align: center;
   padding: 0.8rem 0 0.8rem 1rem;
+}
+
+@media (width < 48rem) {
+  table td {
+    padding: 1.2rem 0 1.2rem 1rem;
+  }
 }
 
 progress::-webkit-progress-bar {

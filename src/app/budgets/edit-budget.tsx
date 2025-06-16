@@ -3,7 +3,7 @@ import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { budget, currentItem } from '@/utils/types';
 import { colors } from '@/utils/colors';
 import { useContext, useState } from 'react';
-import { budgetsContext } from '@/app/budgets/page';
+import { budgetsContext } from '@/app/budgets/budgets';
 import jsonData from '@/app/data.json';
 
 

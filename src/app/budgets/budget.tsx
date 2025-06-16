@@ -17,6 +17,7 @@ export default function Budget({ budget, index }: {
         edit: -1,
         delete: -1
     });
+    
 
     onmousedown = function(e) {
         if(document.getElementById('budget-menu') && !document.getElementById('budget-menu')?.contains(e.target as HTMLElement)) {
@@ -34,7 +35,7 @@ export default function Budget({ budget, index }: {
     }
 
     return(
-        <div className='p-6 bg-light rounded-xl'>
+        <div className='p-6 bg-light rounded-xl max-mobile:px-3'>
             { currentBudget.edit == index &&
                 <EditBudget budget={budget} index={index} setCurrentBudget={setCurrentBudget} />
             }
@@ -50,7 +51,9 @@ export default function Budget({ budget, index }: {
                     <button className='text-2xl font-semibold tracking-wide cursor-pointer' onClick={toggleMenu}>...</button>
                 </div>
                 { currentBudget.toggle == index &&
-                    <div id='budget-menu' className="bg-light p-4 rounded-xl w-[26%] absolute top-10 right-0 shadow">
+                    <div id='budget-menu'
+                    className="bg-light p-4 rounded-xl w-[26%] absolute top-10 right-0 shadow max-tablet:w-[38%] max-mobile-lg:w-[45%] max-mobile:w-[50%]"
+                    >
                         <button
                         className='cursor-pointer w-full text-center'
                         onClick={() => setCurrentBudget(currentBudget => {

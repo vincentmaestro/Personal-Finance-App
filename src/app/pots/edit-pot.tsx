@@ -3,7 +3,7 @@ import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { currentItem, pot } from '@/utils/types';
 import { colors } from '@/utils/colors';
 import { useContext, useState } from 'react';
-import { potsContext } from '@/app/pots/page';
+import { potsContext } from '@/app/pots/pots';
 
 export default function EditPot({ pot, index, setCurrentPot }: {
     pot: pot,

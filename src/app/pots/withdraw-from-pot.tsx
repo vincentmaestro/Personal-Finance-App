@@ -1,7 +1,7 @@
 import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { pot, modifiedPot } from '@/utils/types';
 import { useContext, useState } from 'react';
-import { potsContext } from '@/app/pots/page';
+import { potsContext } from '@/app/pots/pots';
 import { useData } from '../../utils/provider';
 
 export default function WithdrawFromPot({ pot, index, setPotToBeModified }: {
@@ -53,15 +53,16 @@ export default function WithdrawFromPot({ pot, index, setPotToBeModified }: {
 
     return(
         <div className="fixed w-full h-screen left-0 top-0 z-[1] bg-[#00000080] flex items-center justify-center">
-            <div className="w-2/6 bg-light rounded-xl px-7 pt-4 pb-6">
+            <div className="w-2/6 bg-light rounded-xl px-7 pt-4 pb-6 max-desktop:w-2/5 max-desktop-sm:w-[45%] max-tablet:w-7/12
+            max-tablet:p-6 max-mobile-lg:w-4/5 max-mobile:w-[90%] max-mobile:p-5">
                 <div className="flex justify-end">
                     <div className="cursor-pointer" onClick={() => setPotToBeModified(pot => ({ ...pot, withdraw: -1 }))}>
                         <CloseModalIcon />
                     </div>
                 </div>
-                <div className='mb-2'>
-                    <h1 className='text-2xl font-semibold mb-1'>Withdraw From {pot.name}</h1>
-                    <p className='text-sm text-light-text'>Withdraw from your pot to put money back in your main balance. This will reduce the amount you have in this pot.</p>
+                <div className='mb-2 max-tablet:mb-4'>
+                    <h1 className='text-2xl font-semibold mb-1 max-desktop-sm:mb-2'>Withdraw From {pot.name}</h1>
+                    <p className='text-sm text-light-text max-tablet:text-base'>Withdraw from your pot to put money back in your main balance. This will reduce the amount you have in this pot.</p>
                 </div>
                 <div className="mb-3">
                     <div className="flex justify-end text-2xl font-semibold mb-1">

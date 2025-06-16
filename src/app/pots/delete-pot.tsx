@@ -1,7 +1,7 @@
 import { pot, currentItem } from "@/utils/types";
 import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { useContext } from 'react';
-import { potsContext } from "@/app/pots/page";
+import { potsContext } from "@/app/pots/pots";
 
 export default function DeletePot({ pot, index, setCurrentPot }: {
     pot: pot,

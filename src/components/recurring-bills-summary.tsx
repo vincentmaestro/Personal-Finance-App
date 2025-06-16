@@ -12,7 +12,11 @@ export default function RecurringBills() {
     const totalDueSoon = isDueSoon.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0) * -1;
 
     return(
-        <div className="col-start-7 col-span-5 bg-light py-4 px-5 rounded-xl row-start-3">
+        <div
+        className="col-start-7 col-span-5 bg-light py-4 px-5 rounded-xl row-start-3
+        max-desktop-sm:col-start-6 max-desktop-sm:col-span-6
+        max-tablet:row-start-6 max-tablet:col-span-10"
+        >
             <div className="flex justify-between mb-6">
                 <h1 className='font-semibold text-xl'>Recurring Bills</h1>
                 <button

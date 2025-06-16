@@ -8,7 +8,11 @@ export default function Transactions() {
     const router = useRouter();
 
     return(
-        <div className="bg-light rounded-xl px-6 py-5 col-start-1 col-span-6 row-start-2 row-span-2">
+        <div
+        className="bg-light rounded-xl px-6 py-5 col-start-1 col-span-6 row-start-2 row-span-2
+        max-desktop-sm:col-span-5
+        max-tablet:row-start-4 max-tablet:col-span-10 max-mobile-sm:px-2"
+        >
             <div className="flex items-center justify-between mb-4">
                 <h1 className='font-semibold text-xl'>Transactions</h1>
                 <button
@@ -24,10 +28,14 @@ export default function Transactions() {
                     <div key={index} className={`w-full flex items-center justify-between py-4 mb-2 ${index < 4 ? 'border-b border-b-light-2' : ''}`}>
                         <div className="flex items-center gap-x-3">
                             <Image src={txn.avatar.slice(1)} alt={txn.name} width={35} height={35} className='rounded-[50%]' />
-                            <h3>{txn.name}</h3>
+                            <h3 className='max-mobile-sm:text-sm'>{txn.name}</h3>
                         </div>
                         <div className="flex flex-col items-end">
-                            <p className={txn.amount.toString()[0] == '-' ? 'text-dark font-semibold' : 'text-green font-semibold'}>{txn.amount.toString()[0] == '-' ? '-$' : '+$'}{txn.amount.toFixed(2).slice(1)}</p>
+                            <p
+                            className={txn.amount.toString()[0] == '-' ? 'text-dark font-semibold' : 'text-green font-semibold'}
+                            >
+                                {txn.amount.toString()[0] == '-' ? '-$' : '+$'}{txn.amount.toFixed(2).slice(1)}
+                            </p>
                             <p className='text-light-text text-sm'>{new Date(txn.date).toDateString()}</p>
                         </div>
                     </div>

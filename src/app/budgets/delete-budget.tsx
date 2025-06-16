@@ -1,7 +1,7 @@
 import { budget, currentItem } from "@/utils/types";
 import CloseModalIcon from '@/assets/icons/icon-close-modal.svg';
 import { useContext } from 'react';
-import { budgetsContext } from '@/app/budgets/page';
+import { budgetsContext } from '@/app/budgets/budgets';
 
 export default function DeleteBudget({ budget, setCurrentBudget }: {
     budget: budget,
