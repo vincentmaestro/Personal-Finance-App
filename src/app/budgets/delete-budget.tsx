@@ -19,7 +19,8 @@ export default function DeleteBudget({ budget, setCurrentBudget }: {
 
     return(
         <div className="w-full h-screen fixed left-0 top-0 bg-[#00000080] z-[1] flex items-center justify-center">
-            <div className="w-2/6 bg-light rounded-xl px-5 py-4">
+            <div className="w-2/6 bg-light rounded-xl px-5 py-4 max-desktop:w-2/5 max-desktop-sm:w-[45%] max-tablet:w-7/12
+            max-tablet:p-6 max-mobile-lg:w-4/5 max-mobile:w-[90%] max-mobile:p-5">
                 <div className="flex justify-end">
                     <div
                     className="cursor-pointer"

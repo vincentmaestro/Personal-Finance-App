@@ -53,7 +53,8 @@ export default function EditBudget({ budget, index, setCurrentBudget }: {
 
     return(
         <div className="w-full h-screen fixed left-0 top-0 flex justify-center items-center bg-[#00000080] z-[1]">
-            <div className="w-2/6 bg-light rounded-xl p-7">
+            <div className="w-2/6 bg-light rounded-xl p-7 max-desktop:w-2/5 max-desktop-sm:w-[45%] max-tablet:w-7/12
+            max-tablet:p-6 max-mobile-lg:w-4/5 max-mobile:w-[90%] max-mobile:p-5">
                 <div className="flex justify-end">
                     <div className="cursor-pointer" onClick={() => setCurrentBudget(currentBudget => {
                         return { ...currentBudget, edit: -1 };
