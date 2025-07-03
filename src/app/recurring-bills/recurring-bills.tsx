@@ -23,7 +23,7 @@ export default function RecurringBills() {
     }, [search, sortBy]);
 
     return(
-        <div className="w-full bg-light-2 px-16 py-14 max-tablet:px-8 max-mobile:px-4">
+        <div className="w-full bg-light-2 px-16 py-14 max-tablet:px-8 max-mobile-lg:px-6 max-mobile:px-4">
             <div className="mb-6 max-desktop-sm:mb-8">
                 <h1 className='text-2xl font-semibold'>Recurring Bills</h1>
             </div>

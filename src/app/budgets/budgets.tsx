@@ -25,7 +25,7 @@ export default function Budgets() {
 
     return (
         <budgetsContext.Provider value={{ budgets: budgets, setBudgets: setBudgets, categories: categories }}>
-            <div className="w-full bg-light-2 px-16 py-14 max-desktop:px-10 max-mobile:px-6 max-mobile-sm:px-4">
+            <div className="w-full bg-light-2 px-16 py-14 max-desktop:px-10 max-mobile-lg:px-8 max-mobile:px-6 max-mobile-sm:px-4">
                 <AddBudget
                 budgetModal={budgetModal}
                 setBudgetModal={setBudgetModal}

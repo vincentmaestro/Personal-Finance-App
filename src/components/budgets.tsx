@@ -24,7 +24,7 @@ export default function Budgets() {
                     <RightCaretIcon />
                 </button>
             </div>
-            <div className='mt-7 flex justify-between max-mobile:flex-col'>
+            <div className='mt-7 flex justify-between max-mobile-lg:flex-col'>
                 <div className="relative flex justify-center">
                     <PieChart width={250} height={250}>
                         <Pie data={budgets} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={70} outerRadius={110}>
@@ -50,7 +50,7 @@ export default function Budgets() {
                         </p>
                     </div>
                 </div>
-                <div className='max-mobile:grid max-mobile:grid-cols-2 max-mobile:gap-4 max-mobile:mt-4'>
+                <div className='max-mobile-lg:grid max-mobile-lg:grid-cols-2 max-mobile-lg:gap-4 max-mobile-lg:mt-4'>
                     { budgets.slice(0, 4).map((budget, index) => (
                     <div key={index} className="flex items-center gap-x-3 mb-3">
                         <div className="w-1.5 h-12 rounded-2xl" style={{ backgroundColor: budget.theme }} />

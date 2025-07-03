@@ -16,7 +16,7 @@ export default function Pots() {
 
     return (
         <potsContext.Provider value={{ pots: pots, setPots: setPots }}>
-            <div className="w-full bg-light-2 px-16 py-14 max-mobile:px-4">
+            <div className="w-full bg-light-2 px-16 py-14 max-mobile-lg:px-8 max-mobile:px-4">
                 <AddPot
                 potModal={potModal}
                 setPotModal={setPotModal}
